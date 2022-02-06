@@ -21,3 +21,16 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.header__pictures{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 240px;
+    height: 64px;
+}
+
+.header__pictures img{
+    width: 100%;
+    height: 100%;
+}
