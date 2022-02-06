@@ -3,3 +3,21 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.header{
+    background: linear-gradient(to right,#cb11ab 0,#481173 100%) no-repeat;
+    padding: 16px 0 44px;
+}
+
+.header__container{
+    max-width: 1504px;
+    width: 100%;
+    padding: 0 32px;
+    margin: 0 auto;
+}
+
+.header__nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

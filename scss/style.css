@@ -4,4 +4,29 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
+
+.header {
+  background: -webkit-gradient(linear, left top, right top, color-stop(0, #cb11ab), to(#481173)) no-repeat;
+  background: linear-gradient(to right, #cb11ab 0, #481173 100%) no-repeat;
+  padding: 16px 0 44px;
+}
+
+.header__container {
+  max-width: 1504px;
+  width: 100%;
+  padding: 0 32px;
+  margin: 0 auto;
+}
+
+.header__nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
 /*# sourceMappingURL=style.css.map */
