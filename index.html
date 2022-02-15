@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./scss/style.css">
     <script src="./js/app.js" defer></script>
+    <link rel="stylesheet" href="./SimpleAdaptiveSlider/simple-adaptive-slider.css">
+    <script defer src="./SimpleAdaptiveSlider/simple-adaptive-slider.js"></script>
     <title>Wildberris-Интернет-магазин</title>
 </head>
 <body>
@@ -24,8 +26,32 @@
                 </div>
         </div>
     </header>
-    <section class="swiper">
-        
+    <section class="slider">
+        <div class="slider__wrapper">
+            <div class="slider__items">
+            <div class="slider__item">
+                <img class="img-fluid" src="./img/swiper/slide_1.jpg" alt="..." width="1440px" height="400" loading="lazy">
+            </div>
+            <div class="slider__item">
+                <img class="img-fluid" src="./img/swiper/slide_2.jpg" alt="..." width="1440px" height="400" loading="lazy">
+            </div>
+            <div class="slider__item">
+                <img class="img-fluid" src="./img/swiper/slide_3.jpg" alt="..." width="1440px" height="400" loading="lazy">
+            </div>
+            <div class="slider__item">
+                <img class="img-fluid" src="./img/swiper/slide_4.jpg" alt="..." width="1440px" height="400" loading="lazy">
+            </div>
+            </div>
+        </div>
+        <a class="slider__control slider__control_prev" href="#" role="button" data-slide="prev"></a>
+        <a class="slider__control slider__control_next" href="#" role="button" data-slide="next"></a>
+        <!-- <ol class="slider__indicators"> /// иконки не видны
+            <li class="slider__indicator" data-slide-to="0"></li>
+            <li class="slider__indicator" data-slide-to="1"></li>
+            <li class="slider__indicator" data-slide-to="2"></li>
+            <li class="slider__indicator" data-slide-to="3"></li>
+        </ol> -->
+
     </section>
     <section class="goods">
         <h2 class="goods__title">Хиты продаж</h2>
