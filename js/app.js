@@ -24,14 +24,14 @@ const showUserSearch = (inputValue) => {
   if (!inputValue) {
     return;
   }
-  const span = document.createElement("p");
-  span.innerHTML = inputValue;
-  span.classList.add("goods__user-search");
+  const currentSearch = document.createElement("p");
+  currentSearch .innerHTML = inputValue;
+  currentSearch .classList.add("goods__user-search");
 
   const buttonRemove = document.createElement("button");
   buttonRemove.classList.add("goods__reset-search");
   buttonRemove.setAttribute("onclick", `clearSearchInput()`);
-  goodsSearch.append(span);
+  goodsSearch.append(currentSearch );
   goodsSearch.append(buttonRemove);
 };
 
