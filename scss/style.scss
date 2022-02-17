@@ -188,7 +188,7 @@
                 font-weight: 700;
                 color: #000;
             }
-            .info__price--last{
+            .info__price--before{
                 font-size: 14px;
                 line-height: 20px;
                 color: #999;
@@ -196,12 +196,19 @@
             }
         }
         .item__description{
+            display: flex;
+            .description__brand{
+                white-space: nowrap;
+                font-size: 14px;
+                line-height: 20px;
+                color: #999;
+                margin-right: 10px;
+            }
             .description__kind{
                 white-space: nowrap;
                 font-size: 14px;
                 line-height: 20px;
                 color: #999;
-                
             }
         }
     }
