@@ -247,11 +247,25 @@
   color: #000;
 }
 
-.goods .item__info .info__price--last {
+.goods .item__info .info__price--before {
   font-size: 14px;
   line-height: 20px;
   color: #999;
   text-decoration: line-through;
+}
+
+.goods .item__description {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.goods .item__description .description__brand {
+  white-space: nowrap;
+  font-size: 14px;
+  line-height: 20px;
+  color: #999;
+  margin-right: 10px;
 }
 
 .goods .item__description .description__kind {
