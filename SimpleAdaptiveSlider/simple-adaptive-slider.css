@@ -1,4 +1,3 @@
-
 .slider {
   position: relative;
   overflow: hidden;
@@ -8,19 +7,16 @@
   margin-bottom: 30px;
 }
 
-
 .slider__wrapper {
   position: relative;
   overflow: hidden;
   background-color: #eee;
 }
 
-
 .slider__items {
   display: flex;
   transition: transform 0.5s ease;
 }
-
 
 .transition-none {
   transition: none;
@@ -67,7 +63,7 @@
 }
 
 .slider__control::before {
-  content: '';
+  content: "";
   display: inline-block;
   width: 20px;
   height: 20px;
@@ -103,7 +99,6 @@
   margin-right: 3px;
   margin-left: 3px;
   background-color: rgba(255, 255, 255, 0.5);
-  background-clip: padding-box;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
   cursor: pointer;
