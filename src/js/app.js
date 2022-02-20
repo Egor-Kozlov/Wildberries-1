@@ -5,7 +5,10 @@ const searchInput = document.querySelector(".search__input");
 const card = document.querySelector(".goods__item");
 const searchButton = document.querySelector(".search__button");
 const goodsSearch = document.querySelector(".goods__user-search-container");
-//<-поменять название
+const cardPreview = document.querySelector(".item__preview");
+
+
+
 
 let cardsList = [];
 let visibleCardsList = [];
@@ -30,6 +33,7 @@ const showUserSearch = (inputValue) => {
 
   const buttonRemove = document.createElement("button");
   buttonRemove.classList.add("goods__reset-search");
+  buttonRemove.innerText = "X";
   buttonRemove.setAttribute("onclick", `clearSearchInput()`);
   goodsSearch.append(currentSearch );
   goodsSearch.append(buttonRemove);
@@ -53,9 +57,10 @@ const requestCards = async () => {
 
 const renderCards = (data) => {
   goodsContainer.innerHTML = "";
-  data.forEach(({ price, priceBefore, discount, brand, picture }) => {
+  data.forEach(({ price, priceBefore, discount, brand, picture, id}) => {
     const goodsItem = document.createElement("div");
     goodsItem.classList.add("goods__item");
+    goodsItem.setAttribute("id", id)
 
     const itemPic = document.createElement("img");
     itemPic.classList.add("item__pic");
@@ -66,8 +71,8 @@ const renderCards = (data) => {
     itemNames.classList.add("item__name");
     goodsItem.append(itemNames);
 
-    const itemTitle = document.createElement("h3");
-    itemTitle.classList.add("item__title");
+    const itemTitle = document.createElement("button");
+    itemTitle.classList.add("item__preview");
     itemTitle.innerText = "Быстрый доступ";
     itemNames.append(itemTitle);
 
@@ -75,6 +80,10 @@ const renderCards = (data) => {
     itemDiscount.classList.add("item__discount");
     itemDiscount.innerText = "-" + discount + "%";
     goodsItem.append(itemDiscount);
+
+    const itemBasket = document.createElement("button");
+    itemBasket.classList.add("item__basket");
+    goodsItem.append(itemBasket);
 
     const itemInfo = document.createElement("div");
     itemInfo.classList.add("item__info");
@@ -119,3 +128,7 @@ const searchCards = (inputValue, cardsList) => {
   visibleCardsList = cardsList.filter((card) => card.brand.toLowerCase().includes(inputValue.toLowerCase()));
   renderCards(visibleCardsList);
 };
+
+
+//увеличение картинки
+

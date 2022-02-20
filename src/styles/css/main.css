@@ -240,11 +240,141 @@
   transition: color 0.3s ease 0s;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+.slider {
+  position: relative;
+  overflow: hidden;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+}
+
+.slider__wrapper {
+  position: relative;
+  overflow: hidden;
+  background-color: #eee;
+}
+
+.slider__items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-transition: -webkit-transform 0.5s ease;
+  transition: -webkit-transform 0.5s ease;
+  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+}
+
+.transition-none {
+  -webkit-transition: none;
+  transition: none;
+}
+
+.slider__item {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+  max-width: 100%;
+  position: relative;
+}
+
+.slider__control {
+  position: absolute;
+  top: 50%;
+  width: 40px;
+  height: 50px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  display: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0.5;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.slider__control_show {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.slider__control:hover,
+.slider__control:focus {
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.7;
+}
+
+.slider__control_prev {
+  left: 0;
+}
+
+.slider__control_next {
+  right: 0;
+}
+
+.slider__control::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: transparent no-repeat center center;
+  background-size: 100% 100%;
+}
+
+.slider__control_prev::before {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+}
+
+.slider__control_next::before {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+}
+
+.slider__indicators {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-left: 0;
+  margin: 0 15%;
+  list-style: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.slider__indicator {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 auto;
+          flex: 0 1 auto;
+  width: 30px;
+  height: 4px;
+  margin-right: 3px;
+  margin-left: 3px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  cursor: pointer;
+}
+
+.slider__indicator_active {
+  background-color: #fff;
 }
 
 .goods {
@@ -270,6 +400,9 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-left: 30px;
+  color: #086ada;
+  margin-top: 8px;
 }
 
 .goods__user-search {
@@ -287,6 +420,7 @@
   height: 25px;
   border: none;
   background: url(../../../img/svg/remove-icon.svg) no-repeat center;
+  color: #086ada;
   cursor: pointer;
 }
 
@@ -360,7 +494,7 @@
   opacity: 1;
 }
 
-.goods .item__name .item__title {
+.item__preview {
   font-family: "Roboto", sans-serif;
   font-weight: 600;
   font-size: 12px;
@@ -373,7 +507,7 @@
 }
 
 @media (max-width: 1024px) {
-  .goods .item__name .item__title {
+  .item__preview {
     font-size: 18px;
     line-height: 21px;
     margin-bottom: 12.81px;
@@ -393,6 +527,18 @@
   bottom: 25px;
   left: 5px;
   padding: 4px 9px;
+}
+
+.item__basket {
+  width: 16px;
+  height: 16px;
+  border: 1px solid black;
+  text-align: center;
+  background-color: #fdeef9;
+  position: absolute;
+  bottom: 30px;
+  right: 9px;
+  background: url(../../../img/bag.png) no-repeat center;
 }
 
 .goods .item__info {
@@ -439,5 +585,12 @@
   font-size: 14px;
   line-height: 20px;
   color: #999;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 /*# sourceMappingURL=main.css.map */
