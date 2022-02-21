@@ -5,9 +5,6 @@ const searchInput = document.querySelector(".search__input");
 const card = document.querySelector(".goods__item");
 const searchButton = document.querySelector(".search__button");
 const goodsSearch = document.querySelector(".goods__user-search-container");
-const cardPreview = document.querySelector(".item__preview");
-
-
 
 
 let cardsList = [];
@@ -28,8 +25,8 @@ const showUserSearch = (inputValue) => {
     return;
   }
   const currentSearch = document.createElement("p");
-  currentSearch .innerHTML = inputValue;
-  currentSearch .classList.add("goods__user-search");
+  currentSearch.innerHTML = inputValue;
+  currentSearch.classList.add("goods__user-search");
 
   const buttonRemove = document.createElement("button");
   buttonRemove.classList.add("goods__reset-search");
@@ -71,9 +68,10 @@ const renderCards = (data) => {
     itemNames.classList.add("item__name");
     goodsItem.append(itemNames);
 
-    const itemTitle = document.createElement("button");
+    const itemTitle = document.createElement("div");
     itemTitle.classList.add("item__preview");
     itemTitle.innerText = "Быстрый доступ";
+    itemTitle.setAttribute("onclick", `showCard ('${picture}') `);
     itemNames.append(itemTitle);
 
     const itemDiscount = document.createElement("p");
@@ -81,8 +79,9 @@ const renderCards = (data) => {
     itemDiscount.innerText = "-" + discount + "%";
     goodsItem.append(itemDiscount);
 
-    const itemBasket = document.createElement("button");
+    const itemBasket = document.createElement("a");
     itemBasket.classList.add("item__basket");
+    itemBasket.setAttribute("src", "https://cdn-icons-png.flaticon.com/512/3081/3081797.png")
     goodsItem.append(itemBasket);
 
     const itemInfo = document.createElement("div");
@@ -130,5 +129,43 @@ const searchCards = (inputValue, cardsList) => {
 };
 
 
-//увеличение картинки
+//увеличение картинки 
+
+const showCard = (pictureSrc) =>{
+
+  const popup = document.createElement("div");
+  popup.classList.add("popup");
+  popup.setAttribute("id", "image")
+
+  const popupBody = document.createElement("div")
+  popupBody.classList.add("popup__body")
+  popup.append(popupBody)
+
+  const popupContent = document.createElement("div")
+  popupContent.classList.add("popup__content")
+  popupBody.append(popupContent)
+
+  const popupClose = document.createElement("a")
+  popupClose.classList.add("popup__close")
+  popupClose.setAttribute("href", "#")
+  popupClose.setAttribute("onclick", `clearPopup()`);
+  popupClose.innerText = "X"
+  popupContent.append(popupClose)
+
+  const popupImage = document.createElement("div")
+  popupImage.classList.add("popup__image")
+  popupContent.append(popupImage)
+
+  const printImage = document.createElement("img")
+  printImage.setAttribute("src", pictureSrc)
+  printImage.classList.add("print__image")
+  popupContent.append(printImage)
+
+  goodsContainer.append(popup);
+}
+
+const clearPopup = () =>{
+  goodsSearch.innerHTML = "";
+  renderCards(cardsList)
+}
 

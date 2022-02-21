@@ -85,7 +85,7 @@
     justify-content: center;
     flex-direction: column;
     opacity: 0;
-    transition: all 0.3s linear;
+    transition: all .5s linear;
     cursor: pointer;
   }
   
@@ -131,13 +131,13 @@
   .item__basket{
   width: 16px;
   height: 16px;
-  border: 1px solid rgb(0, 0, 0);
+  object-fit: cover;
   text-align: center;
-  background-color: #fdeef9;
+  background-color: #fa00b7;
   position: absolute; 
   bottom: 30px;
   right: 9px;
-  background: url(../../../img/bag.png) no-repeat center;
+  // background: url(../../../img/svg/basket-shopping.svg) no-repeat center;
   }
   
   .goods .item__info {
