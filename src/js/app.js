@@ -2,13 +2,14 @@
 
 const goodsContainer = document.querySelector(".goods__container");
 const searchInput = document.querySelector(".search__input");
-const card = document.querySelector(".goods__item");
 const searchButton = document.querySelector(".search__button");
 const goodsSearch = document.querySelector(".goods__user-search-container");
+const basket = document.querySelector(".header__basket")
 
 
 let cardsList = [];
 let visibleCardsList = [];
+const pickedItems = [];
 
 const showActivityIndicator = () => {
   const activityIndicator = document.createElement("div");
@@ -71,7 +72,7 @@ const renderCards = (data) => {
     const itemTitle = document.createElement("div");
     itemTitle.classList.add("item__preview");
     itemTitle.innerText = "Быстрый доступ";
-    itemTitle.setAttribute("onclick", `showCard ('${picture}') `);
+    itemTitle.setAttribute("onclick", `showCard ('${picture}')`);
     itemNames.append(itemTitle);
 
     const itemDiscount = document.createElement("p");
@@ -79,10 +80,11 @@ const renderCards = (data) => {
     itemDiscount.innerText = "-" + discount + "%";
     goodsItem.append(itemDiscount);
 
-    const itemBasket = document.createElement("a");
-    itemBasket.classList.add("item__basket");
-    itemBasket.setAttribute("src", "https://cdn-icons-png.flaticon.com/512/3081/3081797.png")
-    goodsItem.append(itemBasket);
+    const addToBasket = document.createElement("button");
+    addToBasket.classList.add("item__basket");
+    addToBasket.setAttribute("src", "https://cdn-icons-png.flaticon.com/512/3081/3081797.png")
+    addToBasket.setAttribute("onclick", `addToBasket(${id})`);
+    goodsItem.append(addToBasket);
 
     const itemInfo = document.createElement("div");
     itemInfo.classList.add("item__info");
@@ -169,3 +171,62 @@ const clearPopup = () =>{
   renderCards(cardsList)
 }
 
+/// корзина 
+
+const renderBasket = (classList, pickedItems) =>{
+
+  const basket = document.createElement("div")
+  basket.classList.add("basket")
+
+  const basketContainer = document.createElement("div")
+  basketContainer.classList.add("basket__container")
+  basket.append(basketContainer)
+
+  const basketContent = document.createElement("div")
+  basketContent.classList.add("basket__content")
+  basketContainer.append(basketContent)
+
+  const basketHeader = document.createElement("div")
+  basketHeader.classList.add("basket__header")
+  basketContent.append(basketHeader)
+
+  const basketTitle = document.createElement("div")
+  basketTitle.classList.add("basket__title")
+  basketHeader.append(basketTitle)
+
+  const title = document.createElement("p")
+  title.classList.add("title")
+  title.innerText = "Корзина"
+  basketTitle.append(title)
+
+  const basketButton = document.createElement("div")
+  basketButton.classList.add("basket__button")
+  basketHeader.append(basketTitle)
+
+  const button = document.createElement("button")
+  button.classList.add("button")
+  button.innerText = "Очистить корзину"
+  basketHeader.append(button)
+  
+  const ul = document.createElement("ul")
+  ul.classList.add("ul")
+  basketContent.append(ul)
+//цикл
+ const createItem = (pickedItems) =>{
+
+ }
+  const liName = document.createElement("li")
+  liName.classList.add("li")
+  liName.innerText = "название"
+  ul.append(liName)
+
+
+  goodsContainer.append(basket)
+}
+
+const addToBasket = (id) =>{
+  pickedItems.push(id)
+  console.log(pickedItems);
+}
+
+basket.addEventListener(("click"), (classList, pickedItems) => renderBasket(classList, pickedItems))
