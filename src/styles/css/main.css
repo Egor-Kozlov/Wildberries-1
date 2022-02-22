@@ -240,6 +240,7 @@
 .header .basket__text {
   font-size: 14px;
   line-height: 20px;
+  padding-left: 10px;
   color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
   display: block;
@@ -667,17 +668,13 @@
 }
 
 .basket__container {
-  padding: 30px 10px;
+  padding: 20px 10px;
   width: 400px;
   height: 500px;
-}
-
-.basket__content {
-  background-color: rgba(248, 238, 226, 0.74);
-  border-radius: 5px;
+  background-color: rgba(248, 238, 226, 0.85);
+  border-radius: 25px;
   border: 1px solid #bdb7b7;
-  width: 400px;
-  height: 500px;
+  position: relative;
 }
 
 .basket__header {
@@ -690,9 +687,84 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 35px;
   padding: 0 16px;
+}
+
+.basket__header .title {
+  color: black;
+  font-size: 28px;
+  line-height: 36px;
+  padding-top: 15px;
+}
+
+.basket__header .clear__items {
+  border: none;
+  background-color: #ff4343ce;
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 36px;
+  padding: 5px;
+  color: black;
+  -webkit-transition: .3s linear;
+  transition: .3s linear;
+}
+
+.basket__header .clear__items:hover {
+  background-color: #e71414b0;
+}
+
+.basket .items__list {
+  padding: 0 16px;
+}
+
+.basket .items__list .item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.basket .items__list .item .name {
+  font-size: 21px;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 150px;
+}
+
+.basket .items__list .item .price {
+  font-size: 21px;
+}
+
+.basket .items__list .item .count {
+  width: 40px;
+  height: 27px;
+  font-size: 15px;
+  padding: 2px;
+}
+
+.basket .sum {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
+.basket .sum .total {
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 900;
+  margin-right: 7px;
+}
+
+.basket .sum .total__sum {
+  font-size: 18px;
+  margin-right: 7px;
 }
 
 * {

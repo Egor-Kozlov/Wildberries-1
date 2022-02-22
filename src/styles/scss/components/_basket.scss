@@ -9,23 +9,78 @@
     align-items: center;
     justify-content: center;
     &__container{
-        padding: 30px 10px;
+        padding: 20px 10px;
         width: 400px;
         height: 500px;
-    }
-    &__content{
-        background-color: rgba(248, 238, 226, 0.74);
-        border-radius: 5px;
+        background-color: rgba(248, 238, 226, 0.85);
+        border-radius: 25px;
         border: 1px solid rgb(189, 183, 183);
-        width: 400px;
-        height: 500px;
+        position: relative;
     }
     &__header{
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-top: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 35px;
         padding: 0 16px;
+        .title{
+            color: rgb(0, 0, 0);
+            font-size: 28px;
+            line-height: 36px;
+            padding-top: 15px;
+        }
+        .clear__items{
+            border: none;
+            background-color: #ff4343ce;
+            cursor: pointer;
+            font-size: 15px;
+            line-height: 36px;
+            padding: 5px;
+            color: rgb(0, 0, 0);
+            transition: .3s linear;
+            &:hover{
+                background-color: #e71414b0;
+            }
+        }
     }
+    .items__list{
+        padding: 0 16px;
+        .item{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            .name{
+                font-size: 21px;
+                white-space: nowrap;
+                overflow: hidden; 
+                max-width: 150px;
+            }
+            .price{
+                font-size: 21px;
+            }
+            .count{
+                width: 40px;
+                height: 27px;
+                font-size: 15px;
+                padding: 2px;
+            }
+        }
+    }
+    .sum{
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        .total{
+            font-size: 18px;
+            text-transform: uppercase;
+            font-weight: 900;
+            margin-right: 7px;
+        }
+        .total__sum{
+            font-size: 18px;
+            margin-right: 7px;
+        }
+    }
+    
 }

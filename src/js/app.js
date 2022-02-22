@@ -182,13 +182,9 @@ const renderBasket = (classList, pickedItems) =>{
   basketContainer.classList.add("basket__container")
   basket.append(basketContainer)
 
-  const basketContent = document.createElement("div")
-  basketContent.classList.add("basket__content")
-  basketContainer.append(basketContent)
-
   const basketHeader = document.createElement("div")
   basketHeader.classList.add("basket__header")
-  basketContent.append(basketHeader)
+  basketContainer.append(basketHeader)
 
   const basketTitle = document.createElement("div")
   basketTitle.classList.add("basket__title")
@@ -203,22 +199,52 @@ const renderBasket = (classList, pickedItems) =>{
   basketButton.classList.add("basket__button")
   basketHeader.append(basketTitle)
 
-  const button = document.createElement("button")
-  button.classList.add("button")
-  button.innerText = "Очистить корзину"
-  basketHeader.append(button)
+  const clearItems = document.createElement("button")
+  clearItems.classList.add("clear__items")
+  clearItems.innerText = "Очистить корзину"
+  basketHeader.append(clearItems)
   
-  const ul = document.createElement("ul")
-  ul.classList.add("ul")
-  basketContent.append(ul)
+  const itemsList = document.createElement("ul")
+  itemsList.classList.add("items__list")
+  basketContainer.append(itemsList)
 //цикл
- const createItem = (pickedItems) =>{
+//  const createItem = (pickedItems) =>{
 
- }
-  const liName = document.createElement("li")
-  liName.classList.add("li")
-  liName.innerText = "название"
-  ul.append(liName)
+//  }
+  const item = document.createElement("li")
+  item.classList.add("item")
+  itemsList.append(item)
+
+  const name = document.createElement("span")
+  name.classList.add("name")
+  name.innerText = "Название"
+  item.append(name)
+
+  const price = document.createElement("span")
+  price.classList.add("price")
+  price.innerText = "Цена"
+  item.append(price)
+
+  const count = document.createElement("input")
+  count.classList.add("count")
+  count.setAttribute ("type", "number")
+  count.setAttribute ("min", "0")
+  count.setAttribute ("value", "0")
+  item.append(count)
+
+  const sum = document.createElement("div")
+  sum.classList.add("sum")
+  basketContainer.append(sum)
+
+  const total = document.createElement("span")
+  total.classList.add("total")
+  total.innerText = "Итого:"
+  sum.append(total)
+
+  const totalSum = document.createElement("span")
+  totalSum.classList.add("total__sum")
+  totalSum.innerText = "XXX"
+  sum.append(totalSum)
 
 
   goodsContainer.append(basket)
