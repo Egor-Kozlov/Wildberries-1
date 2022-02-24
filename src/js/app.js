@@ -4,8 +4,7 @@ const goodsContainer = document.querySelector(".goods__container");
 const searchInput = document.querySelector(".search__input");
 const searchButton = document.querySelector(".search__button");
 const goodsSearch = document.querySelector(".goods__user-search-container");
-const basket = document.querySelector(".header__basket")
-
+const basket = document.querySelector(".header__basket");
 
 let cardsList = [];
 let visibleCardsList = [];
@@ -33,7 +32,7 @@ const showUserSearch = (inputValue) => {
   buttonRemove.classList.add("goods__reset-search");
   buttonRemove.innerText = "X";
   buttonRemove.setAttribute("onclick", `clearSearchInput()`);
-  goodsSearch.append(currentSearch );
+  goodsSearch.append(currentSearch);
   goodsSearch.append(buttonRemove);
 };
 
@@ -55,10 +54,10 @@ const requestCards = async () => {
 
 const renderCards = (data) => {
   goodsContainer.innerHTML = "";
-  data.forEach(({ price, priceBefore, discount, brand, picture, id}) => {
+  data.forEach(({ price, priceBefore, discount, brand, picture, id }) => {
     const goodsItem = document.createElement("div");
     goodsItem.classList.add("goods__item");
-    goodsItem.setAttribute("id", id)
+    goodsItem.setAttribute("id", id);
 
     const itemPic = document.createElement("img");
     itemPic.classList.add("item__pic");
@@ -82,7 +81,6 @@ const renderCards = (data) => {
 
     const addToBasket = document.createElement("button");
     addToBasket.classList.add("item__basket");
-    addToBasket.setAttribute("src", "https://cdn-icons-png.flaticon.com/512/3081/3081797.png")
     addToBasket.setAttribute("onclick", `addToBasket(${id})`);
     goodsItem.append(addToBasket);
 
@@ -130,129 +128,158 @@ const searchCards = (inputValue, cardsList) => {
   renderCards(visibleCardsList);
 };
 
+//увеличение картинки
 
-//увеличение картинки 
-
-const showCard = (pictureSrc) =>{
-
+const showCard = (pictureSrc) => {
   const popup = document.createElement("div");
   popup.classList.add("popup");
-  popup.setAttribute("id", "image")
+  popup.setAttribute("id", "image");
 
-  const popupBody = document.createElement("div")
-  popupBody.classList.add("popup__body")
-  popup.append(popupBody)
+  const popupBody = document.createElement("div");
+  popupBody.classList.add("popup__body");
+  popup.append(popupBody);
 
-  const popupContent = document.createElement("div")
-  popupContent.classList.add("popup__content")
-  popupBody.append(popupContent)
+  const popupContent = document.createElement("div");
+  popupContent.classList.add("popup__content");
+  popupBody.append(popupContent);
 
-  const popupClose = document.createElement("a")
-  popupClose.classList.add("popup__close")
-  popupClose.setAttribute("href", "#")
+  const popupClose = document.createElement("a");
+  popupClose.classList.add("popup__close");
+  popupClose.setAttribute("href", "#");
   popupClose.setAttribute("onclick", `clearPopup()`);
-  popupClose.innerText = "X"
-  popupContent.append(popupClose)
+  popupClose.innerText = "X";
+  popupContent.append(popupClose);
 
-  const popupImage = document.createElement("div")
-  popupImage.classList.add("popup__image")
-  popupContent.append(popupImage)
+  const popupImage = document.createElement("div");
+  popupImage.classList.add("popup__image");
+  popupContent.append(popupImage);
 
-  const printImage = document.createElement("img")
-  printImage.setAttribute("src", pictureSrc)
-  printImage.classList.add("print__image")
-  popupContent.append(printImage)
+  const printImage = document.createElement("img");
+  printImage.setAttribute("src", pictureSrc);
+  printImage.classList.add("print__image");
+  popupContent.append(printImage);
 
   goodsContainer.append(popup);
-}
+};
 
-const clearPopup = () =>{
-  goodsSearch.innerHTML = "";
-  renderCards(cardsList)
-}
+const clearPopup = () => {};
 
-/// корзина 
+/// корзина
 
-const renderBasket = (classList, pickedItems) =>{
+const createItem = (itemName, itemPrice, itemCount) => {
+  const item = document.createElement("li");
+  item.classList.add("item");
 
-  const basket = document.createElement("div")
-  basket.classList.add("basket")
+  const name = document.createElement("span");
+  name.classList.add("name");
+  name.innerText = `${itemName}`;
+  item.append(name);
 
-  const basketContainer = document.createElement("div")
-  basketContainer.classList.add("basket__container")
-  basket.append(basketContainer)
+  const price = document.createElement("span");
+  price.classList.add("price");
+  price.innerText = `${itemPrice}`;
+  item.append(price);
 
-  const basketHeader = document.createElement("div")
-  basketHeader.classList.add("basket__header")
-  basketContainer.append(basketHeader)
+  const count = document.createElement("input");
+  count.classList.add("count");
+  count.setAttribute("type", "number");
+  count.setAttribute("min", "0");
+  count.setAttribute("value", `${itemCount}`);
+  item.append(count);
 
-  const basketTitle = document.createElement("div")
-  basketTitle.classList.add("basket__title")
-  basketHeader.append(basketTitle)
+  return item;
+};
 
-  const title = document.createElement("p")
-  title.classList.add("title")
-  title.innerText = "Корзина"
-  basketTitle.append(title)
+const findBasketItem = (cardsList, pickedItems) => {
+  return pickedItems.reduce((acc, itemID) => {
+    const foundItem = cardsList.find((item) => item.id == itemID);
+    if (foundItem) {
+      if (!foundItem.count) {
+        foundItem.count = 1;
+      }
+      if (acc.find((item) => item.id === foundItem.id)) {
+        foundItem.count = foundItem.count + 1;
+        return acc;
+      }
+      acc.push(foundItem);
+    }
+    return acc;
+  }, []);
+};
 
-  const basketButton = document.createElement("div")
-  basketButton.classList.add("basket__button")
-  basketHeader.append(basketTitle)
+const calcBasketItem = (currentBasketItems) => {
+  return currentBasketItems.reduce((sum, item) => +item.price * item.count + sum, 0);
+};
 
-  const clearItems = document.createElement("button")
-  clearItems.classList.add("clear__items")
-  clearItems.innerText = "Очистить корзину"
-  basketHeader.append(clearItems)
-  
-  const itemsList = document.createElement("ul")
-  itemsList.classList.add("items__list")
-  basketContainer.append(itemsList)
-//цикл
-//  const createItem = (pickedItems) =>{
+const clearBasket = (pickedItems) => {
+  pickedItems.length = 0;
+};
 
-//  }
-  const item = document.createElement("li")
-  item.classList.add("item")
-  itemsList.append(item)
+const renderBasket = (cardsList, pickedItems) => {
+  const currentBasketItems = findBasketItem(cardsList, pickedItems);
+  console.log("currentBasketItems: ", currentBasketItems);
 
-  const name = document.createElement("span")
-  name.classList.add("name")
-  name.innerText = "Название"
-  item.append(name)
+  const basket = document.createElement("div");
+  basket.classList.add("basket");
 
-  const price = document.createElement("span")
-  price.classList.add("price")
-  price.innerText = "Цена"
-  item.append(price)
+  const basketContainer = document.createElement("div");
+  console.log("basketContainer: ", basketContainer);
+  basketContainer.classList.add("basket__container");
+  basket.append(basketContainer);
 
-  const count = document.createElement("input")
-  count.classList.add("count")
-  count.setAttribute ("type", "number")
-  count.setAttribute ("min", "0")
-  count.setAttribute ("value", "0")
-  item.append(count)
+  const basketHeader = document.createElement("div");
+  basketHeader.classList.add("basket__header");
+  basketContainer.append(basketHeader);
 
-  const sum = document.createElement("div")
-  sum.classList.add("sum")
-  basketContainer.append(sum)
+  const basketTitle = document.createElement("div");
+  basketTitle.classList.add("basket__title");
+  basketHeader.append(basketTitle);
 
-  const total = document.createElement("span")
-  total.classList.add("total")
-  total.innerText = "Итого:"
-  sum.append(total)
+  const title = document.createElement("p");
+  title.classList.add("title");
+  title.innerText = "Корзина";
+  basketTitle.append(title);
 
-  const totalSum = document.createElement("span")
-  totalSum.classList.add("total__sum")
-  totalSum.innerText = "XXX"
-  sum.append(totalSum)
+  const basketButton = document.createElement("div");
+  basketButton.classList.add("basket__button");
+  basketHeader.append(basketTitle);
 
+  const clearItems = document.createElement("button");
+  clearItems.classList.add("clear__items");
+  clearItems.innerText = "Очистить корзину";
+  clearItems.setAttribute("onclick", "clearBasket(pickedItems)");
+  basketHeader.append(clearItems);
 
-  goodsContainer.append(basket)
-}
+  const itemsList = document.createElement("ul");
+  itemsList.classList.add("items__list");
+  basketContainer.append(itemsList);
+  //цикл
+  //  const createItem = (pickedItems) =>{
 
-const addToBasket = (id) =>{
-  pickedItems.push(id)
-  console.log(pickedItems);
-}
+  //  }
+  currentBasketItems.forEach((item) => {
+    itemsList.append(createItem(item.brand, item.price, item.count)); //<-
+  });
 
-basket.addEventListener(("click"), (classList, pickedItems) => renderBasket(classList, pickedItems))
+  const sum = document.createElement("div");
+  sum.classList.add("sum");
+
+  const total = document.createElement("span");
+  total.classList.add("total");
+  total.innerText = "Итого:";
+  sum.append(total);
+
+  const totalSum = document.createElement("span");
+  totalSum.classList.add("total__sum");
+  totalSum.innerText = `${calcBasketItem(currentBasketItems)} Br`;
+  sum.append(totalSum);
+
+  basketContainer.append(sum);
+  goodsContainer.append(basket);
+};
+
+const addToBasket = (id) => {
+  pickedItems.push(id);
+};
+
+basket.addEventListener("click", () => renderBasket(cardsList, pickedItems));
